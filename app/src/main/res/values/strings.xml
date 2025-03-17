@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">Seg</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Seg OAuth2</string>
+    <string name="title_home">Início</string>
+    <string name="title_dashboard">Painel</string>
+    <string name="title_notifications">Avisos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_cad_credencial">Cad. Credencial</string>
+    <string name="url_autenticador">URL Autenticador</string>
+    <string name="hint_url">http://192.168.77.22/autenticador</string>
 </resources>
