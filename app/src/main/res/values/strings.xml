@@ -6,6 +6,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_cad_credencial">Cad. Credencial</string>
-    <string name="url_autenticador">URL Autenticador</string>
-    <string name="hint_url">http://192.168.77.22/autenticador</string>
+    <string name="url_autenticador">Token Endpoint</string>
+    <string name="hint_url">http://192.168.123.876/autenticador</string>
+    <string name="client_id">Client ID</string>
+    <string name="hint_clientID">2f45jk768uyt6765hjjkkj</string>
+    <string name="client_secret">Client Secret</string>
+    <string name="hint_client_secret"><![CDATA[1s&crEt9]]></string>
+    <string name="grant_type">Grant Type</string>
+    <string name="getToken">Obter Token</string>
+    <string-array name="grant_types">
+        <item>client_credentials</item>
+        <item>authorization_code</item>
+    </string-array>
 </resources>

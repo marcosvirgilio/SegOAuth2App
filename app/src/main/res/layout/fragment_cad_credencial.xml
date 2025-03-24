@@ -16,26 +16,81 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvGrantType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/grant_type" />
+
+            <Spinner
+                android:id="@+id/spGrantType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/grant_types"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/tvTokenEndpoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/url_autenticador" />
 
             <EditText
-                android:id="@+id/etURL"
+                android:id="@+id/etTokenEndpoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/hint_url"
                 android:importantForAutofill="no"
-                android:inputType="textUri"
-                android:minHeight="48dp" />
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:minLines="2"
+                android:minHeight="48dp"
+                tools:ignore="TextFields" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvClientID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/client_id" />
+
+            <EditText
+                android:id="@+id/etClientID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_clientID"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:minLines="2"
+                android:minHeight="48dp"
+                tools:ignore="VisualLintTextFieldSize" />
+
+            <TextView
+                android:id="@+id/tvClientScret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/client_secret" />
+
+            <EditText
+                android:id="@+id/etClientSecret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_client_secret"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:minLines="2"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/btGetToken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/getToken" />
+
+
         </LinearLayout>
     </ScrollView>
 
