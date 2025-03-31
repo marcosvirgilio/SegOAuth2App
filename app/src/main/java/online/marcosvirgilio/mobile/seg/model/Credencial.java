@@ -14,6 +14,13 @@ public class Credencial {
     private String clientID;
     private String clientScret;
 
+    //CONSTRUTOR - Inicializa os atributos para gerar Objeto Json
+    public Credencial () throws Exception {
+        this.setGrantType("client_credentials");
+        this.setEndpoint("");
+        this.setClientID("");
+        this.setClientScret("");
+    }
     //CONSTRUTOR - inicializa atributos de um arquivo JSon
     public Credencial (JSONObject jp) {
         try {
@@ -25,13 +32,7 @@ public class Credencial {
              Log.e("Crendencial", Objects.requireNonNull(e.getMessage()));
         }
     }
-    //CONSTRUTOR - Inicializa os atributos para gerar Objeto Json
-    public Credencial () throws Exception {
-        this.setGrantType("client_credentials");
-        this.setEndpoint("");
-        this.setClientID("");
-        this.setClientScret("");
-    }
+
     //Metodo retorna o objeto com dados no formato JSON
     public JSONObject toJsonObject() {
         JSONObject json = new JSONObject();
