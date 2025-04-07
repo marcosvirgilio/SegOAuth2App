@@ -27,4 +27,10 @@
         android:name="online.marcosvirgilio.mobile.seg.ui.credencial.CadCredencialFragment"
         android:label="@string/title_cad_credencial"
         tools:layout="@layout/fragment_cad_credencial" />
+
+    <fragment
+        android:id="@+id/navigation_con_credencial"
+        android:name="online.marcosvirgilio.mobile.seg.ui.credencial.ConCredencialFragment"
+        android:label="@string/title_con_credencial"
+        tools:layout="@layout/fragment_con_credencial_list" />
 </navigation>

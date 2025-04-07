@@ -14,6 +14,7 @@
     <string name="hint_client_secret"><![CDATA[1s&crEt9]]></string>
     <string name="grant_type">Grant Type</string>
     <string name="getToken">Obter Token</string>
+    <string name="title_con_credencial">Con. Credencial</string>
     <string-array name="grant_types">
         <item>client_credentials</item>
         <item>authorization_code</item>

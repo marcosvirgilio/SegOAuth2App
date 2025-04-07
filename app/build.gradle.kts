@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "online.marcosvirgilio.mobile.seg"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "online.marcosvirgilio.mobile.seg"
@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.volley)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

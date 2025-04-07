@@ -13,8 +13,13 @@
 
     <item
         android:id="@+id/navigation_cad_credencial"
-        android:icon="@android:drawable/ic_lock_idle_lock"
+        android:icon="@android:drawable/ic_input_add"
         android:title="@string/title_cad_credencial" />
+
+    <item
+        android:id="@+id/navigation_con_credencial"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/title_con_credencial" />
 
     <item
         android:id="@+id/navigation_notifications"
