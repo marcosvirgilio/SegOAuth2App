@@ -10,9 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import online.marcosvirgilio.mobile.seg.R;
 import online.marcosvirgilio.mobile.seg.model.Credencial;
@@ -22,7 +34,8 @@ import online.marcosvirgilio.mobile.seg.model.Credencial;
  * Use the {@link CadCredencialFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CadCredencialFragment extends Fragment implements View.OnClickListener {
+public class CadCredencialFragment extends Fragment
+        implements View.OnClickListener, Response.ErrorListener, Response.Listener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,6 +52,9 @@ public class CadCredencialFragment extends Fragment implements View.OnClickListe
     private EditText etClientID;
     private EditText etClientSecret;
     private Button btGetToken;
+    //volley
+    private RequestQueue requestQueue;
+    private JsonObjectRequest jsonObjectReq;
 
 
     public CadCredencialFragment() {
@@ -85,6 +101,10 @@ public class CadCredencialFragment extends Fragment implements View.OnClickListe
         this.btGetToken = view.findViewById(R.id.btGetToken);
         //definindo o listener do botão
         this.btGetToken.setOnClickListener(this);
+        //instanciando a fila de requests - caso o objeto seja o view
+        this.requestQueue = Volley.newRequestQueue(view.getContext());
+        //inicializando a fila de requests do SO
+        this.requestQueue.start();
         //retorno da função
         return view;
     }
@@ -100,11 +120,53 @@ public class CadCredencialFragment extends Fragment implements View.OnClickListe
                 credencial.setClientID(this.etClientID.getText().toString());
                 credencial.setEndpoint(this.etTokenEndpoint.getText().toString());
                 credencial.setGrantType(this.spGrantType.getSelectedItem().toString());
+                //REQUEST VOLLEY AQUI !!!!!!!
+                jsonObjectReq = new JsonObjectRequest(
+                        Request.Method.POST,
+                        "http://10.0.2.2:8080/seg/cadusuario.php",
+                        credencial.toJsonObject(), this, this);
+                requestQueue.add(jsonObjectReq);
                 //mensagem de sucesso
                 Toast.makeText(view.getContext(), "Sucesso!", Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Snackbar mensagem = Snackbar.make(view,
+                "Ops! Houve um problema ao realizar o cadastro: " +
+                        error.toString(),Snackbar.LENGTH_LONG);
+        mensagem.show();
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        try {
+            //instanciando objeto para manejar o JSON que recebemos
+            JSONObject json = new JSONObject(response.toString());
+            //contexto e text são para a mensagem na tela o Toast
+            Context contexto = view.getContext();
+            //pegando mensagem que veio do json
+            CharSequence mensagem = json.getString("message");
+            //duração da mensagem na tela
+            int duracao = Toast.LENGTH_SHORT;
+            //verificando se salvou sem erro para limpar campos da tela
+            if (json.getBoolean("success")){
+                //limpar campos da tela
+                this.etClientID.setText("");
+                this.etClientSecret.setText("");
+                this.etTokenEndpoint .setText("");
+                //selecionando primeiro item dos spinners
+                this.spGrantType.setSelection(0);
+            }
+            //mostrando a mensagem que veio do JSON
+            Toast toast = Toast.makeText (contexto, mensagem, duracao);
+            toast.show();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
     }
 }
