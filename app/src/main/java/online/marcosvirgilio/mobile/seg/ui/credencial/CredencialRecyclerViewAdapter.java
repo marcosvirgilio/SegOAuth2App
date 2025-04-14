@@ -3,24 +3,23 @@ package online.marcosvirgilio.mobile.seg.ui.credencial;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import online.marcosvirgilio.mobile.seg.ui.credencial.placeholder.PlaceholderContent.PlaceholderItem;
 import online.marcosvirgilio.mobile.seg.databinding.FragmentConCredencialBinding;
+import online.marcosvirgilio.mobile.seg.model.Credencial;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
+ * {@link RecyclerView.Adapter} that can display a {@link Credencial}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class CredencialRecyclerViewAdapter extends RecyclerView.Adapter<CredencialRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<Credencial> mValues;
 
-    public CredencialRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public CredencialRecyclerViewAdapter(List<Credencial> items) {
         mValues = items;
     }
 
@@ -34,8 +33,8 @@ public class CredencialRecyclerViewAdapter extends RecyclerView.Adapter<Credenci
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getClientID());
+        holder.mContentView.setText(mValues.get(position).getEndpoint());
     }
 
     @Override
@@ -46,7 +45,7 @@ public class CredencialRecyclerViewAdapter extends RecyclerView.Adapter<Credenci
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
-        public PlaceholderItem mItem;
+        public Credencial mItem;
 
         public ViewHolder(FragmentConCredencialBinding binding) {
             super(binding.getRoot());
