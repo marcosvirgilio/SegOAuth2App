@@ -67,11 +67,8 @@ public class Credencial {
     }
 
     public void setEndpoint(String endpoint) throws Exception {
-        if (endpoint.contains("http")){
+
             this.endpoint = endpoint;
-        } else {
-            throw new Exception("Endpoint inválido");
-        }
     }
 
     public String getClientID() {
